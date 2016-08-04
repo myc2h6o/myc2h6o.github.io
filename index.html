@@ -1,8 +1,60 @@
+<!DOCTYPE html>
 <html>
-	<title>
-		Welcome
-	</title>
-	<body>
-		<a height=600, href="test/test.html">Test Page</a>
-	</body>
+<body>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<<<<
+<a href="test/test.html">Test Link</a>
+>>>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<canvas id="myCanvas" width="600" height="400" style="border:5px solid #33ccff;" />
+<script>
+	var x = 300;
+	var y = 200;
+	const step = 10;
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	function draw(){
+		//clear canvas
+		ctx.clearRect(0, 0, 600, 400);
+		
+		//begin drawing
+		ctx.beginPath();
+		ctx.fillStyle = "#33ccff";
+		
+		//words
+		ctx.font="20px Arial";
+		ctx.fillText("          Up",10,30);
+		ctx.fillText("Left  Down  Right",10,60);
+		ctx.font="24px Arial";
+		ctx.fillText("A Small Moving Test ^O^",320,40);
+		
+		//circle
+		ctx.arc(x, y, 20, 0, 2 * Math.PI);
+		ctx.fill();
+		ctx.closePath();
+	}
+	draw();
+	
+	document.onkeydown = function(e){
+		//left, up, right, down
+		switch(e.keyCode){
+			case 37:
+				x -= step;
+				if(x < 100) x = 100;
+				break;
+			case 38:
+				y -= step;
+				if(y < 20) y = 20;
+				break;
+			case 39:
+				x += step;
+				if(x > 580) x = 580;
+				break;
+			case 40:
+				y += step;
+				if(y > 380) y = 380;
+				break;
+		}
+		draw();
+	}
+</script>
+</body>
 </html>
